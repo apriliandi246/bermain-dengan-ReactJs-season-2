@@ -16,6 +16,10 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
+
+        {/* 
+            totalCounters => menghitung ada berapa nilai dari proeprti value yang lebih besar dari
+        */}
         <NavBar totalCounters={this.state.counters.filter(c => c.value > 0).length} />
 
         <main className="container">
@@ -51,7 +55,6 @@ class App extends Component {
 
   handleDelete = (counterId) => {
     const counters = this.state.counters.filter(c => c.id !== counterId);
-    console.log(counters);
     this.setState({ counters: counters });
   }
 }
