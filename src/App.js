@@ -24,12 +24,12 @@ class App extends Component {
 
         <main className="container">
           <Counters
+            total={this.state.total}
+            counters={this.state.counters}
             onReset={this.handleReset}
-            onIncrement={this.handleIncrement}
             onDelete={this.handleDelete}
             addEntry={this.handleAddEntry}
-            counters={this.state.counters}
-            total={this.state.total}
+            onIncrement={this.handleIncrement}
           />
         </main>
       </React.Fragment>
@@ -53,16 +53,14 @@ class App extends Component {
       return c;
     });
 
-    this.setState({ counters: counters });
     this.setState({ total: 0 });
+    this.setState({ counters: counters });
   }
 
-  // mengubah state nya menjadi nilai yang tidak sama dengan id dari element yang mau dihapus
   handleDelete = (counterId) => {
-    const counters = this.state.counters.filter(c => c.id !== counterId);
-    this.setState({ counters: counters });
-
     let total = 0;
+
+    const counters = this.state.counters.filter(c => c.id !== counterId);
 
     counters.map(c => {
       total += c.value;
@@ -70,6 +68,7 @@ class App extends Component {
     });
 
     this.setState({ total });
+    this.setState({ counters: counters });
   }
 
   handleTotal = () => {
@@ -85,7 +84,7 @@ class App extends Component {
 
   handleAddEntry = () => {
     const counters = [...this.state.counters];
-    counters.push({ id: counters.length + 1, value: 0 });
+    counters.push({ id: Date.now(), value: 0 });
     this.setState({ counters });
   }
 }
