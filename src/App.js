@@ -53,6 +53,7 @@ class App extends Component {
     this.setState({ counters: counters });
   }
 
+  // mengubah state nya menjadi nilai yang tidak sama dengan id dari element yang mau dihapus
   handleDelete = (counterId) => {
     const counters = this.state.counters.filter(c => c.id !== counterId);
     this.setState({ counters: counters });
