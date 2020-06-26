@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Counter from './counter';
+import Counter from './Counter';
+
 
 class Counters extends Component {
    state = {
@@ -35,5 +36,6 @@ class Counters extends Component {
       return count === 0 || data.length === 0 ? true : false;
    }
 }
+
 
 export default Counters;

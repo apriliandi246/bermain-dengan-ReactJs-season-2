@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import NavBar from './components/navbar';
-import Counters from './components/counters';
+import Navbar from './components/Navbar';
+import Counters from './components/Counters';
 
 
 class App extends Component {
@@ -16,11 +16,10 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-
         {/* 
             totalCounters => menghitung ada berapa nilai dari proeprti value yang lebih besar dari
         */}
-        <NavBar totalCounters={this.state.counters.filter(c => c.value > 0).length} />
+        <Navbar totalCounters={this.state.counters.filter(c => c.value > 0).length} />
 
         <main className="container">
           <Counters

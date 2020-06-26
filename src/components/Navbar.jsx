@@ -1,7 +1,8 @@
 import React from 'react';
 
+
 // stateless functional component
-const NavBar = ({ totalCounters }) => {
+const Navbar = ({ totalCounters }) => {
    return (
       <nav className="navbar navbar-light bg-warning mb-5">
          <a className="navbar-brand" href="/#">
@@ -11,4 +12,5 @@ const NavBar = ({ totalCounters }) => {
    );
 }
 
-export default NavBar;
+
+export default Navbar;
