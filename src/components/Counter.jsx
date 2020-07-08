@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class Counter extends Component {
    render() {
       return (
@@ -23,6 +22,5 @@ class Counter extends Component {
       return count === 0 ? 'zero' : count;
    }
 }
-
 
 export default Counter;

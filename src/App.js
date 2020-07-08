@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Navbar from './components/Navbar';
 import Counters from './components/Counters';
 
-
 class App extends Component {
   state = {
     counters: [
@@ -35,18 +34,18 @@ class App extends Component {
     );
   }
 
-
   handleIncrement = (counter) => {
     const counters = [...this.state.counters];
     const index = counters.indexOf(counter);
+
     counters[index] = { ...counter };
     counters[index].value++;
+
     this.setState({ counters: counters });
     this.handleTotal();
   }
 
   handleReset = () => {
-    // me-reset semua nilai counter nya menjadi nol
     const counters = this.state.counters.map(c => {
       c.value = 0;
       return c;
@@ -67,7 +66,7 @@ class App extends Component {
     });
 
     this.setState({ total });
-    this.setState({ counters: counters });
+    this.setState({ counters });
   }
 
   handleTotal = () => {
@@ -87,6 +86,5 @@ class App extends Component {
     this.setState({ counters });
   }
 }
-
 
 export default App;
