@@ -16,7 +16,7 @@ class Counters extends Component {
             <button onClick={addEntry} className="button btn btn-success btn-sm m-3">Add Entry</button>
 
             {
-               counters.map(counter =>
+               counters.map((counter) =>
                   <Counter
                      key={counter.id}
                      onDelete={onDelete}

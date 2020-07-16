@@ -4,12 +4,12 @@ import Counters from './components/Counters';
 
 class App extends Component {
   state = {
+    total: 0,
     counters: [
       { id: 1, value: 0 },
       { id: 2, value: 0 },
       { id: 3, value: 0 }
-    ],
-    total: 0
+    ]
   }
 
   render() {
@@ -18,7 +18,7 @@ class App extends Component {
         {/* 
             totalCounters => menghitung ada berapa nilai dari proeprti value yang lebih besar dari
         */}
-        <Navbar totalCounters={this.state.counters.filter(c => c.value > 0).length} />
+        <Navbar totalCounters={this.state.counters.filter((c) => c.value > 0).length} />
 
         <main className="container">
           <Counters
