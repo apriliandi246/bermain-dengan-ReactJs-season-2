@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Navbar = ({ totalCounters }) => {
    return (
@@ -8,6 +9,10 @@ const Navbar = ({ totalCounters }) => {
          </a>
       </nav>
    );
+}
+
+Navbar.propTypes = {
+   totalCounters: PropTypes.number.isRequired
 }
 
 export default Navbar;

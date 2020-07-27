@@ -12,28 +12,6 @@ class App extends Component {
     ]
   }
 
-  render() {
-    return (
-      <React.Fragment>
-        {/* 
-            totalCounters => menghitung ada berapa nilai dari proeprti value yang lebih besar dari
-        */}
-        <Navbar totalCounters={this.state.counters.filter((c) => c.value > 0).length} />
-
-        <main className="container">
-          <Counters
-            total={this.state.total}
-            counters={this.state.counters}
-            onReset={this.handleReset}
-            onDelete={this.handleDelete}
-            addEntry={this.handleAddEntry}
-            onIncrement={this.handleIncrement}
-          />
-        </main>
-      </React.Fragment>
-    );
-  }
-
   handleIncrement = (counter) => {
     const counters = [...this.state.counters];
     const index = counters.indexOf(counter);
@@ -41,8 +19,19 @@ class App extends Component {
     counters[index] = { ...counter };
     counters[index].value++;
 
-    this.setState({ counters: counters });
-    this.handleTotal();
+    this.setState({ counters });
+    this.handleTotal('increment');
+  }
+
+  handleDecerement = (counter) => {
+    const counters = [...this.state.counters];
+    const index = counters.indexOf(counter);
+
+    counters[index] = { ...counter };
+    counters[index].value--;
+
+    this.setState({ counters });
+    this.handleTotal('decrement');
   }
 
   handleReset = () => {
@@ -52,7 +41,7 @@ class App extends Component {
     });
 
     this.setState({ total: 0 });
-    this.setState({ counters: counters });
+    this.setState({ counters });
   }
 
   handleDelete = (counterId) => {
@@ -69,21 +58,42 @@ class App extends Component {
     this.setState({ counters });
   }
 
-  handleTotal = () => {
-    let total = 1;
+  handleTotal = (process) => {
+    if (process === 'increment') {
+      const total = this.state.counters.reduce((total, counter) => counter.value + total, 1);
+      this.setState({ total });
 
-    this.state.counters.map(c => {
-      total += c.value;
-      return total;
-    });
-
-    this.setState({ total });
+    } else {
+      this.setState({ total: this.state.total - 1 });
+    }
   }
 
   handleAddEntry = () => {
     const counters = [...this.state.counters];
     counters.push({ id: Date.now(), value: 0 });
     this.setState({ counters });
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Navbar
+          totalCounters={this.state.counters.filter((c) => c.value > 0).length}
+        />
+
+        <main className="container">
+          <Counters
+            total={this.state.total}
+            counters={this.state.counters}
+            onReset={this.handleReset}
+            onDelete={this.handleDelete}
+            addEntry={this.handleAddEntry}
+            onIncrement={this.handleIncrement}
+            onDecrement={this.handleDecerement}
+          />
+        </main>
+      </React.Fragment>
+    );
   }
 }
 
